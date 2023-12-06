@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { decrement, increment, reset } from '../state/counter.actions';
 
 @Component({
   selector: 'app-counter-buttons',
   templateUrl: './counter-buttons.component.html',
-  styleUrls: ['./counter-buttons.component.css']
+  styleUrls: ['./counter-buttons.component.css'],
 })
 export class CounterButtonsComponent implements OnInit {
   counter: number = 0;
-  constructor() { }
+  constructor(private store: Store<{ counter: { counter: number } }>) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onIncrement() {
+    this.store.dispatch(increment());
   }
 
-  onIncrement(){
-
+  onDecrement() {
+    this.store.dispatch(decrement());
   }
 
-  onDecrement(){
-
-  }
-
-  onReset(){
-    
+  onReset() {
+    this.store.dispatch(reset());
   }
 }
